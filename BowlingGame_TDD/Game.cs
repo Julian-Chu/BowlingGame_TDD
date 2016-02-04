@@ -14,7 +14,7 @@ namespace BowlingGame_TDD
 
         public int CalculatingScore()
         {
-            return -1;
+            return 0;
         }
     }
 }

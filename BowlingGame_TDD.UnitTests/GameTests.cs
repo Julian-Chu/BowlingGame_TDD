@@ -12,7 +12,7 @@ namespace BowlingGame_TDD.UnitTests
     {
         Game game;
         [Test()]
-        public void Game_Roll20timesGutter_Returns0()
+        public void CalculatingScore_Roll20timesGutter_Returns0()
         {
             //Arrange
             game = new Game();
