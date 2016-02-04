@@ -7,14 +7,15 @@ namespace BowlingGame_TDD
 {
     public class Game
     {
+        int score=0;
         public void Roll(int pins)
         {
-
+            score += pins;
         }
 
         public int CalculatingScore()
         {
-            return 0;
+            return score;
         }
     }
 }

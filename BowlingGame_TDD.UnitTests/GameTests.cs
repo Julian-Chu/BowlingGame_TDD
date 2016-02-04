@@ -29,6 +29,23 @@ namespace BowlingGame_TDD.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+        [Test()]
+        public void CalculatingScore_testAllOnes_Returns20()
+        {
+            //Arrange
+            game = new Game();
+            int expected = 20;
+            int actual;
+
+            //Act
+            for (int i = 0; i < 20; i++)
+                game.Roll(1);
+            actual = game.CalculatingScore();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
 
     }
 }
