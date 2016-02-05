@@ -26,13 +26,7 @@ namespace BowlingGame_TDD.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        private void RollMany(int times, int pins)
-        {
-            for (int i = 0; i < times; i++)
-            {
-                game.Roll(pins);
-            }
-        }
+        
 
         [Test()]
         public void CalculatingScore_testAllOnes_Returns20()
@@ -60,21 +54,27 @@ namespace BowlingGame_TDD.UnitTests
             int actual;
 
             //Act
-            game.Roll(5);
-            game.Roll(5);
+            RollOneSpare();
             game.Roll(3);
             RollMany(17,0);
             actual = game.CalculatingScore();
 
             //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual); 
+     }
 
-            
-            
-
-
+        private void RollMany(int times, int pins)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                game.Roll(pins);
+            }
         }
 
-
+        private void RollOneSpare()
+        {
+            game.Roll(5);
+            game.Roll(5);
+        }
     }
 }

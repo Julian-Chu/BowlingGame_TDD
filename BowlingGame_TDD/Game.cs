@@ -21,12 +21,17 @@ namespace BowlingGame_TDD
             for (int frame = 0; frame < 10; frame++ )
             {
                 int scoreInFrame=rolls[frame * 2] + rolls[frame * 2 + 1];
-                if(scoreInFrame==10)
+                if (IsOneSpare(scoreInFrame))
                     scoreInFrame+=rolls[frame*2+2];
                 totalScore += scoreInFrame;
                 
             }
             return totalScore;
+        }
+
+        private static bool IsOneSpare(int scoreInFrame)
+        {
+            return scoreInFrame == 10;
         }
     }
 }
