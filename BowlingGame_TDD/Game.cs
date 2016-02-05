@@ -7,15 +7,26 @@ namespace BowlingGame_TDD
 {
     public class Game
     {
-        int score=0;
+        int totalScore=0;
+        int[] rolls=new int[20];
+        int rollsIndex = 0;
         public void Roll(int pins)
         {
-            score += pins;
+            rolls[rollsIndex] = pins;
+            rollsIndex++;
         }
 
         public int CalculatingScore()
         {
-            return score;
+            for (int frame = 0; frame < 10; frame++ )
+            {
+                int scoreInFrame=rolls[frame * 2] + rolls[frame * 2 + 1];
+                if(scoreInFrame==10)
+                    scoreInFrame+=rolls[frame*2+2];
+                totalScore += scoreInFrame;
+                
+            }
+            return totalScore;
         }
     }
 }
