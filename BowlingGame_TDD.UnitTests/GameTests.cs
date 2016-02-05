@@ -25,9 +25,7 @@ namespace BowlingGame_TDD.UnitTests
             //Assert
             Assert.AreEqual(expected, actual);
         }
-
         
-
         [Test()]
         public void CalculatingScore_testAllOnes_Returns20()
         {
@@ -80,6 +78,22 @@ namespace BowlingGame_TDD.UnitTests
             actual = game.CalculatingScore();
 
             //Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test()]
+        public void CalculatingScore_testPerfectGame_Return300()
+        {
+            //Arrange
+            game = new Game();
+            int expected = 300;
+            int actual;
+
+            //Act
+            RollMany(12, 10);
+            actual = game.CalculatingScore();
+
+            //Arrange
             Assert.AreEqual(expected, actual);
         }
 

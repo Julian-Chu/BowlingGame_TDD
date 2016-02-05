@@ -8,12 +8,12 @@ namespace BowlingGame_TDD
     public class Game
     {
         int totalScore=0;
-        int[] rolls=new int[20];
+        int[] rolls=new int[22];
         int rollsIndex = 0;
         public void Roll(int pins)
         {
             rolls[rollsIndex] = pins;
-            if(pins==10 && rollsIndex%2==0)
+            if(pins==10 && rollsIndex%2==0 && rollsIndex<20)
             {
                 rolls[++rollsIndex] = 0;
             }
@@ -26,13 +26,27 @@ namespace BowlingGame_TDD
             {
                 int scoreInFrame=rolls[frame * 2] + rolls[frame * 2 + 1];
                 if (IsOneStrike(frame))
-                    scoreInFrame += rolls[frame * 2 + 2] + rolls[frame * 2 + 3];
+                    scoreInFrame += StrikeBonus(frame);
                 if (IsOneSpare(scoreInFrame))
-                    scoreInFrame+=rolls[frame*2+2];
-                totalScore += scoreInFrame;
-                
+                    scoreInFrame += SpareBonus(frame);
+                totalScore += scoreInFrame;                
             }
             return totalScore;
+        }
+
+        private int SpareBonus(int frame)
+        {
+            return rolls[frame * 2 + 2];
+        }
+
+        private int StrikeBonus(int frame)
+        {
+            
+            if(frame!=9 && IsOneStrike(frame+1))
+            {
+                return 10 + rolls[(frame + 2) * 2];
+            }
+            return rolls[frame * 2 + 2] + rolls[frame * 2 + 3];
         }
 
         private bool IsOneStrike(int frame)
