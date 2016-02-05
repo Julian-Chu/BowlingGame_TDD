@@ -13,6 +13,10 @@ namespace BowlingGame_TDD
         public void Roll(int pins)
         {
             rolls[rollsIndex] = pins;
+            if(pins==10 && rollsIndex%2==0)
+            {
+                rolls[++rollsIndex] = 0;
+            }
             rollsIndex++;
         }
 
@@ -21,12 +25,19 @@ namespace BowlingGame_TDD
             for (int frame = 0; frame < 10; frame++ )
             {
                 int scoreInFrame=rolls[frame * 2] + rolls[frame * 2 + 1];
+                if (IsOneStrike(frame))
+                    scoreInFrame += rolls[frame * 2 + 2] + rolls[frame * 2 + 3];
                 if (IsOneSpare(scoreInFrame))
                     scoreInFrame+=rolls[frame*2+2];
                 totalScore += scoreInFrame;
                 
             }
             return totalScore;
+        }
+
+        private bool IsOneStrike(int frame)
+        {
+            return rolls[frame * 2] == 10;
         }
 
         private static bool IsOneSpare(int scoreInFrame)

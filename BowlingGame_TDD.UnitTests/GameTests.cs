@@ -45,7 +45,7 @@ namespace BowlingGame_TDD.UnitTests
         }
 
         [Test()]
-        public void CalcuatingScore_testOneSpare_Returns16()
+        public void CalculatingScore_testOneSpare_Returns16()
         {
             //User story: player rolled 5/5,3/0,0/0......
             //Arrange
@@ -62,6 +62,26 @@ namespace BowlingGame_TDD.UnitTests
             //Assert
             Assert.AreEqual(expected, actual); 
      }
+
+        [Test()]
+        public void CalculatingScore_testOneStrike_Returns24()
+        {
+            //User story: player rolls 10/0,3/4,0/0,0/0.....
+            //Arrange
+            game = new Game();
+            int expected = 24;
+            int actual;
+
+            //Act
+            game.Roll(10);            
+            game.Roll(3);
+            game.Roll(4);
+            RollMany(16, 0);
+            actual = game.CalculatingScore();
+
+            //Assert
+            Assert.AreEqual(expected, actual);
+        }
 
         private void RollMany(int times, int pins)
         {
