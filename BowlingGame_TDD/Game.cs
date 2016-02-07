@@ -40,8 +40,7 @@ namespace BowlingGame_TDD
         }
 
         private int StrikeBonus(int frame)
-        {
-            
+        {            
             if(frame!=9 && IsOneStrike(frame+1))
             {
                 return 10 + rolls[(frame + 2) * 2];

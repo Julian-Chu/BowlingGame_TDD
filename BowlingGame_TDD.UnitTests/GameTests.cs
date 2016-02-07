@@ -97,6 +97,47 @@ namespace BowlingGame_TDD.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
+
+        [Test()]
+        public void CalcucalatingScore_testOneStrikeOneSpare_Returns40()
+        {
+            //user story: 10/0,4/6,5/0,0/0.........
+            //Arrange
+            game = new Game();
+            int expected = 40;
+            int actual;
+
+            //Act
+            game.Roll(10);
+            game.Roll(4);
+            game.Roll(6);
+            game.Roll(5);
+            RollMany(15, 0);
+            actual = game.CalculatingScore();
+
+            //Arrange
+            Assert.AreEqual(expected, actual);
+        
+        }
+
+        [Test()]
+        public void CalculatingScore_testTurkey_Returns60()
+        {
+            //User stroy: 10/0,10/0,10/0,0/0,0/0......
+            //Arrange
+            game = new Game();
+            int expected = 60;
+            int actual;
+
+            //Act
+            RollMany(3, 10);
+            RollMany(14, 0);
+            actual = game.CalculatingScore();
+
+            //Arrange
+            Assert.AreEqual(expected, actual);
+        }
+
         private void RollMany(int times, int pins)
         {
             for (int i = 0; i < times; i++)
